@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition acreedores'
+define service ZUI_ACREEDORES {
+  expose ZC_ACREEDORES;
+}

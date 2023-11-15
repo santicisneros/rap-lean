@@ -1,0 +1,27 @@
+managed implementation in class zbp_i_soh_447 unique;
+strict ( 2 ); // en on premise puedo dejarlo o sacarlo // por defecto hace ciertos chequeos sobre nuestro desarrollo para ser feature o cloud proof
+
+define behavior for ZI_SOH_447 alias soh //alias <alias_name>
+persistent table zasoh447
+lock master // chequeo de concurrencia, debe estar para que no realicen varios al mismo tiempo
+authorization master ( global )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly : update ) SoId;
+
+
+  mapping for zasoh447
+    {
+      SoID      = so_id;
+      SalesOrg  = sales_org;
+      Div       = div;
+      DistCh    = dist_ch;
+      CreatedBy = created_by;
+      CreatedDt = created_dt;
+    }
+
+}

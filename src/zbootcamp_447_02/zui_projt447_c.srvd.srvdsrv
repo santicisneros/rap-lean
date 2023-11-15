@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition PROJECT CORRECT'
+define service ZUI_PROJT447_C {
+  expose ZC_PROJT447;
+}

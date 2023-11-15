@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition TRAVEL'
+define service ZUI_TRAVEL_N_447 {
+  expose ZC_TRAVEL_N_447 as TravelOrderHeader;
+}

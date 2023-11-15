@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition SOH NEW'
+define service ZUI_SOHNEW_447 {
+  expose ZC_SOHNEW_447 as SalesOrder;
+}

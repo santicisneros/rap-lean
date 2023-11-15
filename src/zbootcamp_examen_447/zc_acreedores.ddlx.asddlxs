@@ -1,0 +1,242 @@
+@Metadata.layer: #CORE
+
+@UI: {
+headerInfo: {
+typeName: 'Acreedor',
+typeNamePlural: 'Acreedores',
+title: {
+            type: #STANDARD,
+            label: 'Deuda Id',
+            value: 'FacturaDeudaId'
+        },
+description: {
+label:'Tipo de Deuda',
+value: 'Type'
+} } }
+@Search.searchable: true
+
+annotate view ZC_ACREEDORES with
+{
+  @UI.facet: [
+       {
+           id: 'GeneralData',
+           purpose: #STANDARD,
+           type: #COLLECTION,
+           label: 'Sale Header',
+           position: 10
+       },
+       {
+           id: 'HeaderDeuda',
+           purpose: #HEADER,
+           type: #DATAPOINT_REFERENCE,
+           position: 10,
+           targetQualifier: 'DeudaData'
+       },
+       {
+           id: 'HeaderStatus',
+           purpose: #HEADER,
+           type: #DATAPOINT_REFERENCE,
+           position: 20,
+           targetQualifier: 'StatusData'
+        },
+        {
+          type: #FIELDGROUP_REFERENCE,
+          position: 10,
+          targetQualifier: 'GeneralData1',
+          parentId: 'GeneralData',
+          isSummary: true,
+          isPartOfPreview: true
+         },
+         {
+          type: #FIELDGROUP_REFERENCE,
+          position: 20,
+          targetQualifier: 'GeneralData2',
+          parentId: 'GeneralData',
+          isSummary: true,
+          isPartOfPreview: true
+         },
+         {
+          type: #FIELDGROUP_REFERENCE,
+          position: 30,
+          targetQualifier: 'GeneralData3',
+          parentId: 'GeneralData',
+          isSummary: true,
+          isPartOfPreview: true
+         }
+       ]
+  @UI.hidden: true
+  Id;
+  @UI: {
+  lineItem: [ { 
+  position: 10,
+  importance: #HIGH,
+  label: 'Deuda Id'}
+  ],
+   selectionField: [ {
+   position: 10 }
+   ],
+  fieldGroup: [ {  
+  qualifier: 'GeneralData1', 
+  position: 10,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Deuda Id'}
+  @Search.defaultSearchElement: true
+  FacturaDeudaId;
+  @UI: {
+  lineItem: [ {  
+  position: 20,
+  importance: #HIGH,
+  label: 'Tipo Deuda'}
+  ],
+   selectionField: [ {
+   position: 20 }
+   ],
+  fieldGroup: [ {  
+  qualifier: 'GeneralData1', 
+  position: 20,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Tipo Deuda'}
+  Type;
+  @UI: {
+  lineItem: [ {  
+  position: 30,
+  importance: #HIGH,
+  label: 'Acreedor Id'}
+  ],
+   selectionField: [ {
+   position: 30 }
+   ],
+  fieldGroup: [ {  
+  qualifier: 'GeneralData1', 
+  position: 30,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Acreedor Id'}
+  @Search.defaultSearchElement: true
+  AcreedorId;
+  @UI: {
+  lineItem: [ {  
+  position: 40,
+  importance: #HIGH,
+  label: 'Nombre Acreedor'}
+  ],
+   selectionField: [ {
+   position: 40 }
+   ],
+  fieldGroup: [ {  
+  qualifier: 'GeneralData1', 
+  position: 40,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Nombre Acreedor'}
+  AcreedorNombre;  
+  @UI: {
+  lineItem: [ { 
+  position: 50,
+  importance: #HIGH,
+  label: 'Monto Total'}
+  ],
+   selectionField: [ {
+   position: 50 }
+   ],
+  fieldGroup: [ {  
+  qualifier: 'GeneralData2', 
+  position: 10,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Monto Total'}
+  @UI.dataPoint: { qualifier: 'DeudaData', title: 'Monto Total'}
+  MontoDeuda;
+   @UI: {
+  lineItem: [ { 
+  position: 60,
+  importance: #HIGH,
+  label: 'Status'},
+  { type: #FOR_ACTION,
+  dataAction: 'setStatusCancel',
+  label: 'Cancelado'
+  },
+  { type: #FOR_ACTION,
+  dataAction: 'setStatusPagado',
+  label: 'Pagado'
+  }
+   ],
+   selectionField: [ {
+   position: 60 }
+   ],
+  fieldGroup: [ {  
+  qualifier: 'GeneralData2', 
+  position: 20,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Status'}
+  @UI.dataPoint: { qualifier: 'StatusData', title: 'Status'}
+  Status;
+  @UI: {
+  lineItem: [ {  
+  position: 70,
+  importance: #HIGH,
+  label: 'Fecha de Emision'}
+  ],
+  selectionField: [ {
+  position: 70 }
+  ],
+  fieldGroup: [ { 
+  qualifier: 'GeneralData2', 
+  position: 30,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Fecha de Emision'}
+  FechaEmision;
+  @UI: {
+  lineItem: [ {  
+  position: 80,
+  importance: #HIGH,
+  label: 'Fecha de Vencimiento'}
+  ],
+  selectionField: [ {
+  position: 80 }
+  ],
+  fieldGroup: [ { 
+  qualifier: 'GeneralData2', 
+  position: 40,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Fecha de Vencimiento'}
+  FechaVenc;
+  @UI: {
+  fieldGroup: [ {  
+  qualifier: 'GeneralData3', 
+  position: 10,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Created At'}
+  CreatedAt; 
+  @UI: {
+  fieldGroup: [ {  
+  qualifier: 'GeneralData3', 
+  position: 20,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Created By'}
+  CreatedBy; 
+  @UI: {
+  fieldGroup: [ {  
+  qualifier: 'GeneralData3', 
+  position: 30,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Last Change By'}
+  LastChangeBy;
+  @UI: {
+  fieldGroup: [ {  
+  qualifier: 'GeneralData3', 
+  position: 40,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Last Change At'}
+  LastChangedAt;
+
+}

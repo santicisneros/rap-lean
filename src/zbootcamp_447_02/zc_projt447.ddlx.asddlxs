@@ -1,0 +1,224 @@
+@Metadata.layer: #CORE
+
+@UI: {
+headerInfo: {
+typeName: 'Project',
+typeNamePlural: 'Project',
+title: {
+type: #STANDARD,
+label: 'ProjectId',
+value: 'ProjectId'
+} } }
+
+@Search.searchable: true
+annotate view ZC_PROJT447 with
+{
+  @UI.facet: [
+  // ventana secundaria que se abre del objeto, por ejemplo al create
+  {
+  id: 'GeneralData',
+  purpose: #STANDARD,
+  type: #COLLECTION,
+  label: 'Project Header',
+  position: 10
+  },
+  {
+  type: #FIELDGROUP_REFERENCE, // cajitas donde se pone una informacion
+  position: 10,
+  targetQualifier: 'GeneralData1',
+  parentId: 'GeneralData',
+  isSummary: true,
+  isPartOfPreview: true
+  },
+  {
+  type: #FIELDGROUP_REFERENCE, // cajitas donde se pone una informacion
+  position: 20,
+  targetQualifier: 'GeneralData2',
+  parentId: 'GeneralData',
+  isSummary: true,
+  isPartOfPreview: true
+  }
+  ]
+  @UI.hidden: true
+  Id;
+  @UI: {
+  lineItem: [ {  // espacio para pagina principal
+  position: 10,
+  importance: #HIGH,
+  label: 'Project Id'}
+  ],
+   selectionField: [ {
+   position: 10 }
+   ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData1', // puedo dividir para diferentes partes de la view
+  position: 10,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Project Id'}
+  @Search.defaultSearchElement: true
+  ProjectId;
+  @UI: {
+  lineItem: [ {  // espacio para pagina principal
+  position: 20,
+  importance: #HIGH,
+  label: 'Description'}
+  ],
+   selectionField: [ {
+   position: 20 }
+   ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData1', // puedo dividir para diferentes partes de la view
+  position: 20,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Description'}
+  @Search.defaultSearchElement: true
+  Description;
+
+  @UI: {
+  lineItem: [ {  // espacio para pagina principal
+  position: 30,
+  importance: #HIGH,
+  label: 'Status'},
+  { type: #FOR_ACTION,
+  dataAction: 'setStatusDisapprove',
+  label: 'Disapprove'
+  },
+  { type: #FOR_ACTION,
+  dataAction: 'setStatusApprove',
+  label: 'Approve'
+  }
+  ],
+  selectionField: [ {
+  position: 30 }
+  ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData1', // puedo dividir para diferentes partes de la view
+  position: 30,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Status'}
+  //@Search.defaultSearchElement: true
+  Status;
+  @UI: {
+  lineItem: [ {  // espacio para pagina principal
+  position: 50,
+  importance: #HIGH,
+  label: 'Begin Date'}
+  ],
+  selectionField: [ {
+  position: 50 }
+  ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData1', // puedo dividir para diferentes partes de la view
+  position: 50,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Begin Date'}
+  //@Search.defaultSearchElement: true
+  BeginDate;
+  @UI: {
+  lineItem: [ {  // espacio para pagina principal
+  position: 60,
+  importance: #HIGH,
+  label: 'End Date'}
+  ],
+  selectionField: [ {
+  position: 60 }
+  ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData1', // puedo dividir para diferentes partes de la view
+  position: 60,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'End Date'}
+  //@Search.defaultSearchElement: true
+  EndDate;
+  @UI: {
+  lineItem: [ {  // espacio para pagina principal
+  position: 30,
+  importance: #HIGH,
+  label: 'Sensitive'}
+  ],
+  selectionField: [ {
+  element: 'IsSensitive',
+  position: 30 }
+  ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData1', // puedo dividir para diferentes partes de la view
+  position: 30,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Sensitive'}
+  //@Search.defaultSearchElement: true
+  IsSensitive;
+  @UI: {
+  //  lineItem: [ {  // espacio para pagina principal
+  //  position: 60,
+  //  importance: #HIGH,
+  //  label: 'Created At'}
+  //  ],
+  //    selectionField: [ {
+  //    position: 50 }
+  //    ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData', // puedo dividir para diferentes partes de la view
+  position: 10,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Created At'}
+  //@Search.defaultSearchElement: true
+  CreatedAt;
+  @UI: {
+  //  lineItem: [ {  // espacio para pagina principal
+  //  position: 60,
+  //  importance: #HIGH,
+  //  label: 'Created At'}
+  //  ],
+  //    selectionField: [ {
+  //    position: 50 }
+  //    ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData2', // puedo dividir para diferentes partes de la view
+  position: 20,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Created By'}
+  //@Search.defaultSearchElement: true
+  CreatedBy;
+  @UI: {
+  //  lineItem: [ {  // espacio para pagina principal
+  //  position: 60,
+  //  importance: #HIGH,
+  //  label: 'Created At'}
+  //  ],
+  //    selectionField: [ {
+  //    position: 50 }
+  //    ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData2', // puedo dividir para diferentes partes de la view
+  position: 30,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Last Change At'}
+  //@Search.defaultSearchElement: true
+  LastChangedAt;
+  @UI: {
+  //  lineItem: [ {  // espacio para pagina principal
+  //  position: 60,
+  //  importance: #HIGH,
+  //  label: 'Created At'}
+  //  ],
+  //    selectionField: [ {
+  //    position: 50 }
+  //    ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData2', // puedo dividir para diferentes partes de la view
+  position: 40,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Last Change By'}
+  //@Search.defaultSearchElement: true
+  LastChangedBy;
+}

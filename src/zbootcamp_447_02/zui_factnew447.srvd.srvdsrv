@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition FACT NEW'
+define service ZUI_FACTNEW447 {
+  expose ZC_FACT_NEW_447;
+}

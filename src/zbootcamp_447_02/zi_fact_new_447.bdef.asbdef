@@ -1,0 +1,44 @@
+managed implementation in class zbp_i_fact_new_447 unique;
+strict ( 2 );
+
+define behavior for ZI_FACT_NEW_447 alias factNew447
+persistent table zafactura_447
+lock master
+authorization master ( global )
+etag master LastChangedAt
+{
+  create;
+  update; //( features : instance );
+  delete;
+
+  field ( readonly, numbering : managed ) Mykey;
+  field ( readonly ) InvoiceId, Status, CreatedBy, CreatedAt, LastChangedBy, LastChangedAt;
+  field ( mandatory : create, readonly : update ) ClientId;
+  field ( mandatory : create ) Type;
+
+  //action
+  action ( features : instance ) setStatusPaid result [1] $self;
+  action ( features : instance ) setStatusCancel result [1] $self;
+  //determination
+  determination detInvoiceId on modify { create; }
+
+  //validation
+  validation valType on save { field Type; }
+
+  mapping for zafactura_447
+    {
+      Mykey         = mykey;
+      InvoiceId     = invoice_id;
+      ClientId      = client_id;
+      TotalPrice    = total_price;
+      CurrencyCode  = currency_code;
+      Status        = status;
+      Type          = type;
+      Description   = description;
+      CreatedBy     = created_by;
+      CreatedAt     = created_at;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
+    }
+
+}

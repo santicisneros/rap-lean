@@ -1,0 +1,205 @@
+@Metadata.layer: #CORE
+
+@UI: {
+headerInfo: {
+typeName: 'Standard Sale',
+typeNamePlural: 'Standard Sales',
+title: {
+            type: #STANDARD,
+            label: 'Sale Id:',
+            value: 'SaleId'
+        },
+description: {
+label:'Type',
+value: 'Type',
+targetElement: 'Type'
+} } }
+@Search.searchable: true
+
+annotate view ZC_SOHNEW_447 with
+{
+  @UI.facet: [
+        {
+            id: 'GeneralData',
+            purpose: #STANDARD,
+            type: #COLLECTION,
+            label: 'Sale Header',
+            position: 10
+        },
+        {
+            id: 'HeaderPrice',
+            purpose: #HEADER,
+            type: #DATAPOINT_REFERENCE,
+            position: 10,
+            targetQualifier: 'PriceData'
+        },
+        {
+            id: 'HeaderStatus',
+            purpose: #HEADER,
+            type: #DATAPOINT_REFERENCE,
+            position: 20,
+            targetQualifier: 'StatusData'
+         },
+         {
+           type: #FIELDGROUP_REFERENCE, // cajitas donde se pone una informacion
+           position: 10,
+           targetQualifier: 'GeneralData1',
+           parentId: 'GeneralData',
+           isSummary: true,
+           isPartOfPreview: true
+          },
+          {
+           type: #FIELDGROUP_REFERENCE, // cajitas donde se pone una informacion
+           position: 20,
+           targetQualifier: 'GeneralData2',
+           parentId: 'GeneralData',
+           isSummary: true,
+           isPartOfPreview: true
+          }      
+        ]
+  @UI.hidden: true
+  SoId;
+  @UI: {
+  lineItem: [ { 
+  position: 10,
+  importance: #HIGH,
+  label: 'Sale Id'}
+  ],
+   selectionField: [ {
+   position: 10 }
+   ],
+  fieldGroup: [ {  
+  qualifier: 'GeneralData1', 
+  position: 10,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Sale Id'}
+  @Search.defaultSearchElement: true
+  SaleId;
+  @UI: {
+  lineItem: [ {  
+  position: 20,
+  importance: #HIGH,
+  label: 'Client Id'}
+  ],
+   selectionField: [ {
+   position: 20 }
+   ],
+  fieldGroup: [ {  
+  qualifier: 'GeneralData1', 
+  position: 20,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Client Id'}
+  ClientId;
+   @UI: {
+  lineItem: [ { 
+  position: 30,
+  importance: #HIGH,
+  label: 'Total Price'}
+  ],
+   selectionField: [ {
+   position: 30 }
+   ],
+  fieldGroup: [ {  
+  qualifier: 'GeneralData1', 
+  position: 30,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Total Price'}
+  @UI.dataPoint: { qualifier: 'PriceData', title: 'Total Price'}
+  TotalPrice;
+  @UI: {
+  lineItem: [ {  
+  position: 40,
+  importance: #HIGH,
+  label: 'Type'}
+  ],
+   selectionField: [ {
+   position: 40 }
+   ],
+  fieldGroup: [ {  
+  qualifier: 'GeneralData1', 
+  position: 40,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Type'}
+  Type;
+   @UI: {
+  lineItem: [ { 
+  position: 50,
+  importance: #HIGH,
+  label: 'Status'},
+  { type: #FOR_ACTION,
+  dataAction: 'setStatusCancel',
+  label: 'Cancel'
+  },
+  { type: #FOR_ACTION,
+  dataAction: 'setStatusPaid',
+  label: 'Paid'
+  }
+  ],
+   selectionField: [ {
+   position: 50 }
+   ],
+  fieldGroup: [ {  
+  qualifier: 'GeneralData1', 
+  position: 50,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Status'}
+  @UI.dataPoint: { qualifier: 'StatusData', title: 'Status'}
+  Status;
+  @UI: {
+  //  lineItem: [ {  // espacio para pagina principal
+  //  position: 60,
+  //  importance: #HIGH,
+  //  label: 'Created At'}
+  //  ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData2', // puedo dividir para diferentes partes de la view
+  position: 10,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Created At'}
+  CreatedAt;
+  @UI: {
+  //  lineItem: [ {  // espacio para pagina principal
+  //  position: 70,
+  //  importance: #HIGH,
+  //  label: 'Created At'}
+  //  ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData2', // puedo dividir para diferentes partes de la view
+  position: 20,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Created By'}
+  CreatedBy;
+  @UI: {
+  //  lineItem: [ {  // espacio para pagina principal
+  //  position: 80,
+  //  importance: #HIGH,
+  //  label: 'Created At'}
+  //  ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData2', // puedo dividir para diferentes partes de la view
+  position: 30,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Last Change At'}
+  LastChangedAt;
+  @UI: {
+  //  lineItem: [ {  // espacio para pagina principal
+  //  position: 90,
+  //  importance: #HIGH,
+  //  label: 'Created At'}
+  //  ],
+  fieldGroup: [ {  // espacio para la parte propia del objeto
+  qualifier: 'GeneralData2', // puedo dividir para diferentes partes de la view
+  position: 40,
+  importance: #HIGH }
+  ] }
+  @EndUserText:{label: 'Last Change By'}
+  LastChangedBy;
+}   

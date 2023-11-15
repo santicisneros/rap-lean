@@ -1,0 +1,48 @@
+managed implementation in class zbp_i_acreedores unique;
+strict ( 2 );
+
+define behavior for ZI_ACREEDORES alias acreedores
+persistent table zaacreedores
+lock master
+authorization master ( global )
+etag master LastChangedAt
+{
+  create;
+  update ( features : instance );
+  delete;
+
+  field ( readonly, numbering : managed ) Id;
+  field ( readonly ) FacturaDeudaId, Status, CreatedBy, CreatedAt, LastChangeBy, LastChangedAt;
+  field ( mandatory : create, readonly : update ) AcreedorId, AcreedorNombre, FechaEmision, FechaVenc;
+  field ( mandatory : create ) Type;
+
+  //  //action
+  action ( features : instance ) setStatusPagado result [1] $self;
+  action ( features : instance ) setStatusCancel result [1] $self;
+
+  //determination
+   determination detDeudaId on modify { create; }
+
+  //validation
+  validation valDeuda on save {  field MontoDeuda; }
+  validation valFecha on save { field FechaEmision, FechaVenc; }
+
+  mapping for zaacreedores
+    {
+      Id             = id;
+      AcreedorId     = acreedor_id;
+      AcreedorNombre = acreedor_nombre;
+      FacturaDeudaId = factura_deuda_id;
+      MontoDeuda     = monto_deuda;
+      CurrencyCode   = currency_code;
+      Type           = type;
+      Status         = status;
+      FechaEmision   = fecha_emision;
+      FechaVenc      = fecha_venc;
+      CreatedBy      = created_by;
+      CreatedAt      = created_at;
+      LastChangeBy   = last_change_by;
+      LastChangedAt  = last_changed_at;
+    }
+
+}

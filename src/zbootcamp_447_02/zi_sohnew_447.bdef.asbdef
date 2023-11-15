@@ -1,0 +1,59 @@
+managed implementation in class zbp_i_sohnew_447 unique;
+strict ( 2 );
+
+define behavior for ZI_SOHNEW_447 alias sohNew
+persistent table zasohnew447
+lock master
+authorization master ( global )
+etag master LastChangedAt
+{
+  create;
+  update ( features : instance );
+  delete;
+
+  field ( readonly, numbering : managed ) SoId;
+  field ( readonly ) SaleId, Status, CreatedBy, CreatedAt, LastChangedBy, LastChangedAt;
+  field ( mandatory : create, readonly : update ) ClientId;
+  field ( mandatory : create ) Type;
+
+  //action
+  action ( features : instance ) setStatusPaid result [1] $self;
+  action ( features : instance ) setStatusCancel result [1] $self;
+
+  //determination
+  determination detSaleId on modify { create; }
+
+  //validation
+  validation valType on save {  field Type; }
+  validation valPrice on save {  field TotalPrice; }
+
+
+  mapping for zasohnew447
+    {
+
+      SoId          = so_id;
+      ClientId      = client_id;
+      CreatedAt     = created_at;
+      CreatedBy     = created_by;
+      CurrencyCode  = currency_code;
+      LastChangedAt = last_changed_at;
+      LastChangedBy = last_changed_by;
+      SaleId        = sale_id;
+      Status        = status;
+      TotalPrice    = total_price;
+      Type          = type;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
